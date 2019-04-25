@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,initial-scale=1'/>
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            position: relative;
+        }
+        .container-fluid{
+            width:100%;
+            height: 100%;
+        }
+
+        #bg{
+            width:40%;
+            height: 40%;
+            border:2px solid #333;
+            background-color:rgba(0,0,0,0.3);
+            position:absolute;
+            left:30%;
+            top:15%;
+
+        }
+        #bg>h6{
+            color:white;
+            font-size:2rem;
+            margin-top:3%;
+            margin-left:3%;
+        }
+        #b1{
+            width:60%;
+            height:1.8rem;
+            background-color:#3399ff;
+        }
+
+        #s1{
+            width: 50%;
+            color:#ca9066;
+            margin:0 auto;
+        }
+        #s2{
+            margin-left:-50%;
+            margin-top:4.6%;
+        }
+        #s3{
+            margin-left:24%;
+            color:#ca9066;
+        }
+
+    </style>
+</head>
+<body>
+<div  class="container-fluid m-0 p-0">
+    <div id="backimg" class="w-100 h-100 d-flex">
+        <img  class="w-100 h-100" src="load.jpg" alt=""/>
+    </div>
+    <div class="d-flex text-center">
+        <div id="bg">
+            <h6 class="mb-4">登录</h6>
+            <div class="row text-center p-2">
+                <div class="col-12 text-center ">
+                    <input class="w-50 pl-1" type="text" id='uname' placeholder='请输入账号'>
+                    <p class="text-left" id='s1'></p>
+                </div>
+            </div>
+            <div class="row text-center p-2">
+                <div class="col-12 text-center">
+                    <input  class="w-50 pl-1" type="password" id='upwd' placeholder='请输入密码'>
+                </div>
+            </div>
+
+            <div class="row mt-3 m-0 p-0">
+                <!-- <div class="col-2"></div>
+                <div class="col-4">
+                    <input  type="checkbox" id='s2'>
+                </div> -->
+                <div class="col-12 text-left">
+                    <span id='s3'>
+                        <!-- 验错文本 -->
+                    </span>
+                </div>
+                <!-- <div class="col-2"></div> -->
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button id='b1' onclick='my2reg()'>点击登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="/index/index.html"></a>
+<script>
+var um=$('#uname');
+ um.blur(function(){
+ var um1=$('#uname').val();
+var reg=/^[A-Za-z0-9]{2,8}$/ig;
+    if(reg.test(um1)){
+        $('#s3').html('');
+    }else if(!(reg.test(um1))){
+        $('#s3').html('账号请输入2-8位字母和数字');
+    } 
+})
+
+
+var up=$('#upwd');
+up.blur(function(){
+var upval=$('#upwd').val();
+  console.log(upval);
+   var regp=/^[0-9]{2,12}$/;
+     console.log(regp.test(upval));
+     if(regp.test(upval)){
+       $('#s3').html('');
+     }else if(!(regp.test(upval))){
+           $('#s3').html('密码请输入2-12位数字');
+     } 
+})
+
+
+
+    function my2reg(){
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+
+                var result=xhr.responseText;
+                var aler=document.getElementsByClassName('text-left')[0];
+                console.log(aler.innerHTML);
+                console.log(result);
+                if(result=='[]'){
+                    // aler.innerHTML='对不起,输入有误'
+                    $('#s3').html('对不起,账号密码输入有误');
+                }else{
+                    alert('登录成功');
+                    $('#s3').html('');
+                    //  location.href='/index/index.html';
+                    location.href=' http://127.0.0.1:5500/index/index.html#';
+
+                }
+            }
+        };
+        var url='http://127.0.0.1:3000/my2/my2reg';
+        xhr.open('post',url,true);
+        var formdata='uname='+uname.value+'&upwd='+upwd.value;
+        xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        console.log(formdata);
+        xhr.send(formdata);
+
+
+
+//        var url='http://127.0.0.1:3000/my2/my2reg?uname='+uname.value+'&upwd='+upwd.value;
+//        console.log(url);
+//        xhr.open('get',url,true);
+//        xhr.send(null);
+}
+</script>
+</body>
+</html>

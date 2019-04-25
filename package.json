@@ -1,0 +1,28 @@
+{
+  "name": "wjgpc",
+  "version": "1.0.0",
+  "description": "一个pc端旅游网站",
+  "main": "my2luyou.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webwjg/wjgpc.git"
+  },
+  "keywords": [
+    "pcwjg"
+  ],
+  "author": "wjg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webwjg/wjgpc/issues"
+  },
+  "homepage": "https://github.com/webwjg/wjgpc#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.17.1"
+  }
+}
