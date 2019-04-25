@@ -6,7 +6,7 @@ const my2=require('./my2luyou.js');
 const bodyParser=require('body-parser');
 
 var server=express();
-server.listen(3000);
+server.listen(5050);
 server.use(express.static('./my2html'));
 // server.use(express.static('../my2js'));
 server.use(express.static('/index'));
